@@ -1,0 +1,18 @@
+# Email automation requirements
+
+# Core dependency for environment variable management
+python-dotenv>=1.0.0
+
+# Built-in Python libraries used (no installation needed):
+# - smtplib (built-in)
+# - email (built-in)
+# - csv (built-in)
+# - logging (built-in)
+# - datetime (built-in)
+# - os (built-in)
+# - typing (built-in)
+# - time (built-in)
+
+# Optional: For enhanced functionality you could add:
+# pandas>=1.5.0  # For advanced CSV handling
+# jinja2>=3.0.0  # For advanced email templating

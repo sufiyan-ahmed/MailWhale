@@ -1,0 +1,4 @@
+{
+    "subject": "Hello {name}, Important Update from Our Team",
+    "body": "Dear {name},\n\nI hope this email finds you well.\n\nWe wanted to reach out to you at {company} regarding some exciting updates we have to share.\n\nAs a {position}, we believe you'll find this information particularly valuable for your work.\n\nPlease let us know if you have any questions or would like to schedule a call to discuss further.\n\nBest regards,\nYour Team\n\nP.S. This email was sent using our automated system. If you'd prefer not to receive these emails, please let us know."
+}
