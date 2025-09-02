@@ -238,8 +238,8 @@ def main():
         print("Sending bulk emails...")
         result = sender.send_bulk_emails(
             recipients_file='recipients.csv',
-            template_file='email_template.json',
-            delay_seconds=2  # 2 second delay between emails
+            template_file='email_template.json'
+            # Will use EMAIL_DELAY_SECONDS from .env (30 seconds)
         )
         
         print(f"Bulk email results:")
