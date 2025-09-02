@@ -49,6 +49,7 @@ GMAIL_EMAIL=your_email@gmail.com
 GMAIL_PASSWORD=your_16_character_app_password
 SMTP_SERVER=smtp.gmail.com
 SMTP_PORT=587
+SENDER_NAME=Your Name
 ```
 
 ⚠️ **Important**: Never commit `.env` to version control!
@@ -57,9 +58,9 @@ SMTP_PORT=587
 
 Edit `recipients.csv` with your recipient data:
 ```csv
-name,email,company,position
-John Doe,john.doe@example.com,Tech Corp,Developer
-Jane Smith,jane.smith@example.com,Design Inc,Designer
+Receiver_Name,Website_Name,Receiver_Mail
+John Doe,Tech Corp,john.doe@example.com
+Jane Smith,Design Inc,jane.smith@example.com
 ```
 
 ### 5. 📜 Craft Your Message Bottle (Email Template)

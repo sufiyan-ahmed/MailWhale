@@ -38,7 +38,8 @@ class EmailSender:
             'email': os.getenv('GMAIL_EMAIL'),
             'password': os.getenv('GMAIL_PASSWORD'),
             'smtp_server': os.getenv('SMTP_SERVER', 'smtp.gmail.com'),
-            'smtp_port': int(os.getenv('SMTP_PORT', '587'))
+            'smtp_port': int(os.getenv('SMTP_PORT', '587')),
+            'sender_name': os.getenv('SENDER_NAME', 'Dummy Sender')
         }
         
         # Validate required configuration
@@ -96,6 +97,9 @@ class EmailSender:
         for key, value in recipient.items():
             placeholder = f"{{{key}}}"
             personalized = personalized.replace(placeholder, str(value))
+        # Replace {Sender_Name} with config sender_name
+        if '{Sender_Name}' in personalized:
+            personalized = personalized.replace('{Sender_Name}', self.config.get('sender_name', 'MailWhale Sender'))
         return personalized
     
     def create_email(self, recipient: Dict, template: Dict, attachments: Optional[List[str]] = None) -> MIMEMultipart:
