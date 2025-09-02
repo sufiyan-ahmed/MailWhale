@@ -81,4 +81,4 @@ Thumbs.db
 *.temp
 
 # Personal recipient lists (optional - uncomment if you want to keep recipients private)
-# recipients.csv
+recipients.csv
