@@ -39,7 +39,8 @@ class EmailSender:
             'password': os.getenv('GMAIL_PASSWORD'),
             'smtp_server': os.getenv('SMTP_SERVER', 'smtp.gmail.com'),
             'smtp_port': int(os.getenv('SMTP_PORT', '587')),
-            'sender_name': os.getenv('SENDER_NAME', 'Dummy Sender')
+            'sender_name': os.getenv('SENDER_NAME', 'Dummy Sender'),
+            'delay_seconds': int(os.getenv('EMAIL_DELAY_SECONDS', '30'))
         }
         
         # Validate required configuration
@@ -132,8 +133,12 @@ class EmailSender:
     
     def send_bulk_emails(self, recipients_file: str, template_file: str, 
                         attachments: Optional[List[str]] = None, 
-                        delay_seconds: int = 1) -> Dict:
+                        delay_seconds: Optional[int] = None) -> Dict:
         """Send bulk emails to all recipients."""
+        # Use configured delay if not specified
+        if delay_seconds is None:
+            delay_seconds = self.config['delay_seconds']
+            
         # Load data
         recipients = self.load_recipients_from_csv(recipients_file)
         template = self.load_email_template(template_file)
@@ -144,6 +149,9 @@ class EmailSender:
         # Connect to Gmail
         if not self.connect_to_gmail():
             return {"success": 0, "failed": 0, "errors": ["Failed to connect to Gmail"]}
+        
+        # Log delay configuration
+        logging.info(f"Using email delay of {delay_seconds} seconds between sends")
         
         success_count = 0
         failed_count = 0
