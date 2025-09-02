@@ -106,7 +106,7 @@ class EmailSender:
         """Create email message."""
         msg = MIMEMultipart()
         msg['From'] = self.config['email']
-        msg['To'] = recipient['email']
+        msg['To'] = recipient['Receiver_Mail']
         msg['Subject'] = self.personalize_message(template['subject'], recipient)
         
         # Create email body
@@ -157,7 +157,7 @@ class EmailSender:
                     self.smtp_server.send_message(msg)
                     
                     success_count += 1
-                    logging.info(f"Email {i}/{len(recipients)} sent successfully to {recipient['email']}")
+                    logging.info(f"Email {i}/{len(recipients)} sent successfully to {recipient['Receiver_Mail']}")
                     
                     # Add delay to avoid being flagged as spam
                     if delay_seconds > 0 and i < len(recipients):
@@ -165,7 +165,7 @@ class EmailSender:
                         
                 except Exception as e:
                     failed_count += 1
-                    error_msg = f"Failed to send email to {recipient.get('email', 'unknown')}: {str(e)}"
+                    error_msg = f"Failed to send email to {recipient.get('Receiver_Mail', 'unknown')}: {str(e)}"
                     errors.append(error_msg)
                     logging.error(error_msg)
                     
